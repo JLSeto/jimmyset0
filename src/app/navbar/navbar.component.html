@@ -1,0 +1,20 @@
+<div fxFlex>
+    <mat-toolbar color="primary" mat-elevation-z8="true">
+        <mat-toolbar-row fxLayout="row" fxLayoutGap="12px">
+            <button mat-icon-button (click)="sidenav.toggle()" *ngIf="hS.getIsMobile()">
+                <mat-icon class="material-icons-outlined">menu</mat-icon>
+            </button>
+            <div *ngIf="!hS.getIsMobile()" fxLayout="row" fxLayoutGap="12px">
+                <button mat-button *ngFor="let obj of navLinks" routerLink="{{obj.link}}">
+                    <span class="nav-links" style="color: white;">{{obj.desc}}</span>
+                </button>
+            </div>
+            <span fxFlex></span>
+            <div *ngIf="!hS.getIsMobile() && baseURL != '/'" fxLayout="row" fxLayoutGap="16px">
+                <div style="display: block;" *ngFor="let local of locSrc">
+                    <a [href]="local.link" target="_blank"><img [src]="local.desc" class="nav-circle"></a>
+                </div>
+            </div>
+        </mat-toolbar-row>
+    </mat-toolbar>
+</div>

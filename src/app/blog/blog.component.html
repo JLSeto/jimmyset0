@@ -1,0 +1,147 @@
+<div class="ftop-container-blog" [ngClass]="hS.getInnerWidth() > 959 ? 'toptop-blog' : 'toptopPadd'" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start start" 
+    fxLayout.lt-md="column" fxLayoutAlign.lt-md="start start">
+        <div fxShow="true" fxHide.lt-lg fxFlex="4"></div>
+    
+        <div fxFlex style="padding-left: 10px; padding-right: 10px;" 
+        fxLayout="row" fxLayoutAlign="start start" fxLayout.lt-md="column" fxLayoutAlign.lt-md="start stretch" fxLayoutGap="30px">
+          <div fxFlex *ngIf="(!hS.getIsMobile() && hS.getInnerWidth() > 959 || !currentURL) || (hS.getIsMobile() && !currentURL)">
+              <div fxLayout="row wrap" fxLayoutAlign="start stretch" fxLayoutGap="4px">
+                  <div *ngFor="let fb of filterButtons">
+                    <button mat-stroked-button class="projects-button-pink" (click)="setFilter(fb)"
+                        [style.color]="(selectedFB == fb )? '#ffffff' : '#ff4081'" [style.background-color]="(selectedFB == fb) ? '#ff4081' : '#ffffff'">
+                        {{fb}}
+                    </button>
+                  </div>
+              </div>
+              <div *ngFor="let obj of arrProjects" style="margin-bottom: 8px;">
+                <mat-card class="mat-elevation-z0 projects-card" style="border: 0.5px solid #d5d5d5;" (click)="hS.routerNavigateNotes(obj.link)" *ngIf="checkFilter(obj)">
+                    <div fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="5px" fxLayout.lt-sm="column" fxLayoutAlign.lt-sm="stretch center">
+                        <div style="display: block; max-width: 250px; min-width: 0px;">
+                            <img class="projects-img" [src]="obj.image">
+                        </div>
+                        <div fxFlex fxLayout="column" fxLayoutAlign="start start" style="padding-left: 4px">
+                            <div class="projects-title">{{obj.title}}</div>
+                            <div class="projects-subtitle">{{obj.date | displayDate}}</div>
+                            <div class="projects-subtitle">({{obj.subtitle}})</div>
+                            <div class="projects-description">{{obj.description}}</div>
+                        </div>
+                    </div>
+                </mat-card>
+              </div>
+          </div>
+          <div fxFlex> 
+            <div *ngFor="let obj of arrProjects">
+                <div *ngIf="checkCurrentURL(obj)">
+                    <h1 style="text-align: center;">{{obj.title}}</h1>
+                    <div *ngFor="let detail of obj.details; let i = index">
+                        <h2>{{detail.heading}}</h2>
+                        <div *ngIf="detail.notes" style="margin-bottom: 12px; line-height: 1.6;" [innerHTML]="detail.notes"></div>
+                        <div *ngIf="detail.list" style="margin-bottom: 12px; line-height: 1.6;">
+                            <ul>
+                                <li *ngFor="let item of detail.list">
+                                    {{item}}
+                                </li>
+                            </ul>
+                        </div>
+                        <div *ngIf="detail.tableList" style="margin-bottom: 12px; line-height: 1.6;">
+                            <table>
+                                <tr *ngIf="detail.tableListHead">
+                                    <th>Function</th>
+                                    <th>
+                                        {{detail.tableListHead.rightHead}}
+                                    </th>
+                                    <th>
+                                        {{detail.tableListHead.right2Head}}
+                                    </th>
+                                </tr>
+                                <tr *ngFor="let item of detail.tableList">
+                                    <td>
+                                        {{item.left}}
+                                    </td>
+                                    <td>
+                                        {{item.right}}
+                                    </td>
+                                    <td *ngIf="item.right2">
+                                        {{item.right2}}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div *ngIf="detail.tagListLinks" style="margin-bottom: 12px; line-height: 1.6;">
+                            <div fxLayout="row wrap" fxLayoutGap="4px" style="margin-bottom: 12px">
+                                <div *ngFor="let item of detail.tagListLinks">
+                                    <button mat-stroked-button style="border-radius: 50px; background-color: white; margin-bottom: 8px;" *ngIf="item.link">
+                                        <a [href]="item.link" target="_blank" style="color: #1e88e5; text-decoration: none;">{{item.title}}</a>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="detail.tagList" style="margin-bottom: 12px; line-height: 1.6;">
+                            <div fxLayout="row wrap" fxLayoutGap="4px" style="margin-bottom: 12px">
+                                <div *ngFor="let item of detail.tagList">
+                                    <button mat-stroked-button class="projects-button-no-link">{{item}}</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="detail.img" fxLayout="row" style="margin-bottom: 12px">
+                            <span fxFlex></span>
+                            <div style="display: block; max-width: 800px; min-width: 50px;">
+                                <img [src]="detail.img" class="projects-img">
+                            </div>
+                            <span fxFlex></span>
+                        </div>
+                    </div>
+                    <div>
+                        <h2>{{obj?.demo?.heading}}</h2>
+                        <div style="margin-bottom: 12px; line-height: 1.6;" [innerHTML]="obj.demo?.notes"></div>
+                        <div style="display: block; max-width: 800px; min-width: 50px;">
+                            <app-frogger *ngIf="obj.link == 'frogger' && !hS.getIsMobile()" class="projects-img"></app-frogger>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-bottom: 8px;">
+                <div *ngIf="iframeSrc" style="margin-bottom: 4px">
+                    <app-iframesrc [iframeSrc]="iframeSrc"></app-iframesrc>
+                </div>
+            </div>
+            <div *ngIf="gitSrc" style="text-align: right;">
+                <button mat-stroked-button style="border-radius: 50px; background-color: white; margin-bottom: 8px;">
+                    <a [href]="gitSrc" target="_blank" style="color: #1e88e5; text-decoration: none;">View Source Code on GitHub</a>
+                </button>
+            </div>
+            <div *ngFor="let obj of arrProjects">
+                <div *ngIf="checkCurrentURL(obj)">
+                    <div *ngIf="obj.hardware.length > 0">
+                        <h2>Hardware</h2>
+                        <div  fxLayout="row wrap" fxLayoutGap="4px" style="margin-bottom: 12px">
+                            <div *ngFor="let hw of obj.hardware">
+                                <button mat-stroked-button class="projects-button-no-link">{{hw}}</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="obj.software.length > 0">
+                        <h2>Software</h2>
+                        <div fxLayout="row wrap" fxLayoutGap="4px" style="margin-bottom: 12px">
+                            <div *ngFor="let sw of obj.software">
+                                <button mat-stroked-button class="projects-button-no-link">{{sw}}</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="obj.references.length > 0">
+                        <h2>References</h2>
+                        <div fxLayout="row wrap" fxLayoutGap="4px" style="margin-bottom: 12px">
+                            <div *ngFor="let rf of obj.references">
+                                <button mat-stroked-button style="border-radius: 50px; background-color: white; margin-bottom: 8px;">
+                                    <a [href]="rf.link" target="_blank" style="color: #1e88e5; text-decoration: none;">{{rf.title}}</a>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+    
+        <div fxShow="true" fxHide.lt-lg fxFlex="4"></div>
+</div>

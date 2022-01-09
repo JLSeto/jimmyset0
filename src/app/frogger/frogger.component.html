@@ -1,0 +1,17 @@
+<div style="width: 100%;" fxLayout="column" fxLayoutAlign="start center">
+    <figure>
+        <canvas #canvas></canvas>
+        <figcaption style="text-align: right;"><span class="frogger-caption" (click)="hS.routerNavigateProject('frogger')">Frogger</span></figcaption>
+    </figure>
+
+    <h3>{{engine.gameMsg}}&nbsp;<span *ngIf="engine.resetCounter > 0">{{engine.resetCounter}}</span></h3>
+</div>
+<div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="16px">
+    <div fxLayout="column" fxLayoutAlign="start start">
+        <div>Wins: {{engine.winCounter}}</div>
+        <div>Losses: {{engine.loseCounter}}</div>
+    </div>
+    <div>
+        <button mat-stroked-button style="color: #ff4048; border-radius: 50px;" (click)="engine.player.changeCharacter()">Change Character</button>
+    </div>
+</div>

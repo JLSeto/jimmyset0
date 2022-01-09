@@ -1,0 +1,57 @@
+.ftop-container 
+{
+    font-size: 120%;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
+    color: #333333; letter-spacing: 1px;
+}
+
+    .toptop {
+    background: linear-gradient(to right, white 50%, #F0F2F5 50%);
+    min-height: calc(100vh - 40px);
+    margin-bottom: 10px;
+    padding-top: 25px;
+  }
+
+  .toptopPadd {
+    padding-top: 25px;
+  }
+
+
+  h1{
+    font-family: "Varela Round"; font-size: 60px; font-style:normal; font-variant: normal; font-weight: 650; line-height: 69.4px;
+  }
+
+  h2{
+    font-family: "Varela Round"; font-size: 30px; font-style: normal; font-variant: normal; font-weight: 500; line-height: 36.4px;
+  }
+
+  h3{
+    font-family: "Varela Round"; font-size: 18px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 32.4px;
+  }
+
+  .frontpage-links{
+    cursor: pointer;
+    color: #1e88e5;
+    text-decoration: none;
+  }
+
+  .frontpage-links:hover{
+    text-decoration: underline;
+  }
+
+  .nav-circle
+{
+    height: auto;
+    width: 300px;
+    overflow: hidden;
+    display: flex;
+    min-width: 30px;
+    justify-content: center;
+    align-items: center;
+    padding-left: 0px;;
+    display: block;
+}
+  
+.logos-signin{
+    width: 40px;
+  }

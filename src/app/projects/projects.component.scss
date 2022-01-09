@@ -1,0 +1,111 @@
+.ftop-container
+{
+    font-size: 120%;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
+    color: #333333; letter-spacing: 1px;
+}
+
+.toptop 
+{
+    background: linear-gradient(to right, white 50%, #FAFAFA 0%);
+    min-height: calc(100vh - 40px);
+    margin-bottom: 10px;
+    padding-top: 25px;
+}
+
+.toptopPadd
+{
+    padding-top: 25px;
+}
+
+h1
+{
+    font-family: "Varela Round"; font-size: 24px; font-style: normal; font-variant: normal; font-weight: 550; line-height: 69.4px;
+}
+
+h2
+{
+    font-family: "Varela Round"; font-size: 20px; font-style: normal; font-variant: normal; font-weight: 500; line-height: 36.4px;
+}
+
+:host ::ng-deep .h3-deep
+{
+    font-family: "Varela Round"; font-size: 16px; font-style: normal; font-variant: normal; font-weight: 600; margin-top: 12px; margin-bottom: 4px;
+}
+
+.projects-card
+{
+    cursor: pointer;
+}
+
+.projects-card:hover
+{
+    background-color: #e8f0ff;
+}
+
+.projects-title
+{
+    font-family: "Varela Round"; font-size: 16.5px; font-style: normal; font-variant: normal; font-weight: 500; line-height: 28.4px;
+}
+
+.projects-subtitle
+{
+    font-family: "Varela Round"; font-size: 14px; font-style: italic; font-variant: normal; font-weight: 400; color: #646464; 
+}
+
+.projects-description
+{
+    font-family: "Varela Round"; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 400;
+}
+
+
+.projects-img
+{
+    border-radius: 5px;
+    height: auto;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 0px;
+    display: block;
+}
+
+.videoWrapper 
+{
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    width: 100%;
+    height: 100%;
+    border: 0.5px solid #d5d5d5;
+}
+
+.videoWrapper iframe 
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.projects-button-no-link
+{
+    border-radius: 50px; color: #505050; 
+    background-color: white; 
+    cursor: default; 
+    pointer-events: none; 
+    margin-bottom: 8px;
+    text-overflow: ellipsis;
+}
+
+.projects-button-pink
+{
+    border-radius: 50px; color: #ff4048; 
+    background-color: white; 
+    margin-bottom: 8px;
+    text-overflow: ellipsis;
+}
