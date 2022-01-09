@@ -123,13 +123,13 @@ class Engine
         }, false);
     }
 
-    private update(dt : number)
+    private update(dt : number) : void
     {
         this.checkCollisions();
         this.updateEntities(dt);
     }
     
-    private checkCollisions()
+    private checkCollisions() : void
     {
         if(this.gotKey)
         {
@@ -165,7 +165,7 @@ class Engine
                     clearInterval(refreshInteval);
                 }
                 
-            }, 1000)
+            }, 1000);
         }
     }
 
@@ -229,7 +229,7 @@ class Engine
     private main = () =>
     {
         let now = Date.now();
-        let dt = (now - this.lastTime) / 1000.0;
+        let dt = (now - this.lastTime) / 2000.0;
         this.update(dt);
         this.render();
         this.lastTime = now;
@@ -416,7 +416,7 @@ class Enemy
 
     public update = (dt: number) : boolean =>
     {
-        this.x += this.speed * dt;
+        this.x += (this.speed * dt);
         this.x = (this.x > 505) ? (-101) : (this.x + 1);
 
         let minRange = Math.floor(this.x - 50);
