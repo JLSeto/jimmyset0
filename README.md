@@ -1,5 +1,7 @@
 # Jimmyseto
 
+This the source code for my static blog hosted on github. Please visit JimmySeto.com to see how it runs:)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.2.
 
 ## Development server
