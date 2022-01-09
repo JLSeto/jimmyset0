@@ -59,7 +59,7 @@ export class ProjectsComponent implements OnInit
                                     {
                                         heading   : 'Demo', 
                                         video     : '',
-                                        git       : 'https://github.com/JLSeto/JLSeto.github.io/tree/master/src/app/frogger'
+                                        git       : 'https://github.com/JLSeto/jimmyset0/tree/master/src/app/frogger/javascriptExample'
                                     },
                 hardware       :    [],
                 software       :    [
