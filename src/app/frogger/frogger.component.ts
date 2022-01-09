@@ -22,7 +22,7 @@ export class FroggerComponent implements OnInit
 
     ngOnDestroy()
     {
-        if(this.engine.windowRequest)
+        if(this.engine.windowRequest != null)
         {
             cancelAnimationFrame(this.engine.windowRequest);
         }
@@ -193,7 +193,7 @@ class Engine
         '/assets/frogger/stone-block.png',   // Row 3 of 3 of stone
         '/assets/frogger/stone-block.png',   // Row 1 of 2 of grass
         '/assets/frogger/grass-block.png'    // Row 2 of 2 of grass
-        ], numRows = 6, numCols = 5, row, col;
+        ], numRows = 6, numCols = 5, row = 0, col = 0;
 
         this.ctx?.clearRect(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
 
@@ -229,7 +229,7 @@ class Engine
     private main = () =>
     {
         let now = Date.now();
-        let dt = (now - this.lastTime) / 2000.0;
+        let dt = (now - this.lastTime) / 1000.0;
         this.update(dt);
         this.render();
         this.lastTime = now;
