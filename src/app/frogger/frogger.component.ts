@@ -385,7 +385,6 @@ class Player
     public render = () : void => 
     {
         this.ctx?.drawImage(this.resources.get(this.sprite), this.x, this.y);
-        this.ctx?.save();
     }
 
     public changeCharacter() : void
@@ -431,14 +430,13 @@ class Enemy
             return true;
           }
         }
-
+        
         return false;
     }
 
     public render = () : void => 
     {
         this.ctx?.drawImage(this.resources.get(this.sprite), this.x, this.y);
-        this.ctx?.save();
     }
 }
 
@@ -463,7 +461,6 @@ class KeyItem
         else
         {
             this.ctx?.drawImage(this.resources.get(this.sprite), this.x, this.y);
-            this.ctx?.save();
         }
     }
 }
