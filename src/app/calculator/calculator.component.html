@@ -1,0 +1,54 @@
+<div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="10px">
+    <div fxLayout="column" fxLayoutAlign="start start">
+        <div style="padding: 12px;">
+            <form #calculatorForm="ngForm">
+                <div>
+                    <mat-radio-group
+                        name="szGroup"
+                        [(ngModel)]="selectedSz" (ngModelChange)="processRadio()">
+                        <mat-radio-button *ngFor="let sz of ByteSizes" [value]="sz.bits" style="padding: 12px;">
+                            {{sz.desc}}
+                        </mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                <div>
+                    <mat-radio-group
+                        name="sgGroup"
+                        [(ngModel)]="isSigned" (ngModelChange)="processRadio()">
+                        <mat-radio-button *ngFor="let sg of signedUnsigned" [value]="sg.val" style="padding: 12px;">
+                            {{sg.desc}}
+                        </mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="4px">
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>Decimal</mat-label>
+                        <input matInput name="decimalInput" autocomplete="off" [(ngModel)]="inputDecimal"
+                        (ngModelChange)="processDecimal($event)" value="{{inputDecimal}}"
+                        [OnlyNumber]="true">
+                      </mat-form-field>
+
+                      <mat-form-field color="accent" appearance="outline">
+                          <mat-label>Binary</mat-label>
+                          <input matInput name="binaryInput" autocomplete="off" [(ngModel)]="inputBinary" 
+                              (ngModelChange)="processBinary($event)" value="{{inputBinary}}"
+                              [OnlyNumber]="false" [OnlyBinary]="true">
+                      </mat-form-field>
+
+                      <mat-form-field color="accent" appearance="outline">
+                        <mat-label>Hex</mat-label>
+                        <input matInput name="hexInput" autocomplete="off" [(ngModel)]="inputHex" 
+                            (ngModelChange)="processHex($event)" value="{{inputHex}}"
+                            [OnlyNumber]="false" [OnlyHex]="true">
+                      </mat-form-field>
+                </div>
+                <div>
+                    <mat-error>
+                        {{errMsg}}
+                    </mat-error>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
