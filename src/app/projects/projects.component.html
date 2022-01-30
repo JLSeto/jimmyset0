@@ -50,6 +50,9 @@
                         <div style="display: block; max-width: 800px; min-width: 50px;">
                             <app-frogger *ngIf="obj.link == 'frogger' && !hS.getIsMobile()" class="projects-img"></app-frogger>
                         </div>
+                        <div *ngIf="obj.link == 'calc'">
+                            <app-calculator></app-calculator>
+                        </div>
                     </div>
                 </div>
             </div>

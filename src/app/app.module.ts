@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { MaterialModule } from './helpers/modules/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -16,7 +17,10 @@ import { DisplayDatePipe } from './helpers/pipes/displayDate.pipe';
 import { iFrameView } from './projects/iframe-view';
 import { FroggerComponent } from './frogger/frogger.component';
 import { BlogComponent } from './blog/blog.component';
-import { TestComponent } from './test/test.component'
+import { TestComponent } from './test/test.component';
+import { CalculatorComponent } from './calculator/calculator.component'
+
+import { OnlyNumber } from './helpers/directives/onlynumber.directive';
 
 @NgModule({
   declarations: 
@@ -29,7 +33,9 @@ import { TestComponent } from './test/test.component'
     iFrameView,
     FroggerComponent,
     BlogComponent,
-    TestComponent
+    TestComponent,
+    CalculatorComponent,
+    OnlyNumber
   ],
   imports: 
   [
@@ -38,6 +44,8 @@ import { TestComponent } from './test/test.component'
     BrowserAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
+    FormsModule,
+    ReactiveFormsModule
     // ChartsModule
   ],
   providers: [],

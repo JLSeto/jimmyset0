@@ -4,6 +4,7 @@ import { BlogComponent }            from './blog/blog.component';
 import { TestComponent }            from './test/test.component';
 import { FrontpageComponent }       from './frontpage/frontpage.component';
 import { ProjectsComponent }        from './projects/projects.component';
+import { CalculatorComponent } from './calculator/calculator.component';
 
 const routes: Routes = 
 [
@@ -12,6 +13,7 @@ const routes: Routes =
   { path: 'projects/:title',                        component: ProjectsComponent                },
   { path: 'notes',                                  component: BlogComponent                    },
   { path: 'test',                                   component: TestComponent                    },
+  { path: 'calc',                                   component: CalculatorComponent              },
   { path: 'notes/:title',                           component: BlogComponent                    }
   //{ path: '**',                                     component: PageNotFoundComponent,           canActivate: [NeutralGuard]   }
 ];

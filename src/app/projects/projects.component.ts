@@ -12,7 +12,7 @@ import { HelperService } from '../helpers/services/helper.service';
 })
 export class ProjectsComponent implements OnInit 
 {
-    public filterButtons: string[] = ['All', 'Hardware', 'Web Components'];
+    public filterButtons: string[] = ['All', 'Hardware', 'Web Components', 'Tools'];
     public selectedFB   : string   = this.filterButtons[0];
     public currentRoute : string | null;
     public currentURL   : string = '';
@@ -289,6 +289,27 @@ export class ProjectsComponent implements OnInit
                                         {link: 'https://help.github.com/articles/setting-up-your-github-pages-site-locally-with-jekyll/', title: 'Setting up your GitHub Pages site locally with Jekyll '},
                                         {link: 'http://jmcglone.com/guides/github-pages/'                                               , title: 'Creating and Hosting a Personal Site on GitHub'},
                                         {link: 'https://www.sylvaindurand.org/making-jekyll-multilingual/'                              , title: 'Making Jekyll multilingual '}
+                                    ],
+            },
+            {
+                type           : ["Tools"],
+                image          : "/assets/calc.png", 
+                title          : "Decimal, Binary, Hex Converter",
+                date           : new Date("January 30, 2021"),
+                subtitle       : "Typescript", 
+                description    : "A Decimal, Binary, Hex Converter that supports up to 64 bits signed/unsigned",
+                link           : "calc",
+                details        :    [
+                                        { 
+                                            heading   : 'Overview', 
+                                            notes     : `Enter in a decimal, binary, or hex number and get the equivalent conversion.`,
+                                            img       : ""
+                                        }
+
+                                    ],
+                hardware       :    [],
+                software       :    ['Typescript'],
+                references     :    [
                                     ],
             }
         ];
