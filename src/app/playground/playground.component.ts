@@ -1327,6 +1327,7 @@ export class PlaygroundComponent implements OnInit
 
   async createFile()
   {
+    this.timeCount = 'Loading...';
     let response = await fetch('/assets/kda-short.mp3');
     let data = await response.blob();
     let metadata = {
@@ -1334,7 +1335,7 @@ export class PlaygroundComponent implements OnInit
     };
     let file = new File([data], "test.mp3", metadata);
     // ... do something with the file or return it
-
+    
     return file;
   }
 
