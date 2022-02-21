@@ -10,6 +10,7 @@ import { HelperService } from '../helpers/services/helper.service';
 })
 export class PlaygroundComponent implements OnInit
 {
+  public hitScore: string = '';
   private VoiceDataFile: any = null;
   public voiceUrl: any = null as any;
   public buttons: string[] = ['a', 's', 'd', 'f', ' ', 'j', 'k', 'l', ';'];
@@ -33,6 +34,15 @@ export class PlaygroundComponent implements OnInit
     'l': 7,
     ';': 8,
   }
+
+  private scores: string[] = 
+  [
+    'Miss',
+    'Poor',
+    'Ok',
+    'Great',
+    'Perfect',
+  ]
 
   public idx: number = 0;
   public beatMapTime: {c: string, s: number, x: number, y: number, t1: number, t2: number}[] =
@@ -1253,6 +1263,7 @@ export class PlaygroundComponent implements OnInit
 
   printEmotes(val: number)
   {
+    this.hitScore = this.scores[val - 1];
     this.points += val;
   }
 
@@ -1482,6 +1493,11 @@ export class PlaygroundComponent implements OnInit
       }
 
       this.pics[y].hit = false;
+      
+      setTimeout(() => {
+        this.hitScore = '';
+      }, 700);
+      
   }
 
   getUrl()

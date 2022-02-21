@@ -105,6 +105,25 @@
     background-color: transparent;
 }
 
+.overlay-load3
+{
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: #555;
+    color: white;
+    font-size: 12px;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+    text-align: center;
+    background-color: transparent;
+}
+
+
 .overlay-score
 {
     position: absolute;
