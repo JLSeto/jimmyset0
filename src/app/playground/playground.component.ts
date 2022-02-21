@@ -10,9 +10,10 @@ import { HelperService } from '../helpers/services/helper.service';
 })
 export class PlaygroundComponent implements OnInit
 {
+  private VoiceDataFile: any = null;
   public voiceUrl: any = null as any;
   public buttons: string[] = ['a', 's', 'd', 'f', ' ', 'j', 'k', 'l', ';'];
-
+  public isPlaying: boolean = false;
   points: number = 0;  
   cScale: number = 50;
   tScale: number = 12;
@@ -1114,8 +1115,7 @@ export class PlaygroundComponent implements OnInit
         //   this.ctx?.drawImage(val.img, val.x, this.canvas.nativeElement.height - 90);
         // });
 
-        if(!this.audio.nativeElement.paused) this.realGamePlay(dt);
-
+        this.realGamePlay(dt, now);
         // this.realGamePlay(dt);
 
         this.lastTime = now;
@@ -1163,7 +1163,7 @@ export class PlaygroundComponent implements OnInit
     this.audio.nativeElement.onended = this.gameEnded();
     this.ctx = this.canvas.nativeElement.getContext('2d');
     this.initializeCanvas();
-
+  
     this.init();
   }
 
@@ -1187,13 +1187,11 @@ export class PlaygroundComponent implements OnInit
 
   }
 
-  public realGamePlay(dt: number)
+  public realGamePlay(dt: number, now: number)
   {
     let newPosOffset = (this.canvas.nativeElement.height - 100) / 100;
     this.ctx?.clearRect(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
     // this.ctx?.strokeRect(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
-
-    let now = Date.now()  / 1000.0;
     let currTime = this.audio.nativeElement.currentTime;
 
     this.pics.forEach((val, key) => 
@@ -1220,7 +1218,7 @@ export class PlaygroundComponent implements OnInit
     });
 
     // Play Game
-    if(this.idx < this.beatMapTime.length && currTime >= this.beatMapTime[this.idx].t1)
+    if(!this.audio.nativeElement.paused && this.idx < this.beatMapTime.length && currTime >= this.beatMapTime[this.idx].t1)
     {
       for(let i = this.idx; i < this.beatMapTime.length 
         && this.beatMapTime[i].t1 <= currTime; i++)
@@ -1339,11 +1337,40 @@ export class PlaygroundComponent implements OnInit
     return file;
   }
 
+  public stopGame()
+  {
+    if(this.timeCount != '') return;
+
+    this.timeCount = 'Game Over';
+    this.idx = 0;
+    this.points = 0;
+    this.audio.nativeElement.pause();
+    this.audio.nativeElement.currentTime = 0;
+
+    this.pics.forEach((val) =>
+    {
+      val.y = 0;
+      val.tHit = 0;
+      val.aHit = 0;
+      val.hit = false;
+    });
+
+    this.beatMapTime.forEach((val) =>
+    {
+      val.s = 0;
+      val.y = 0;
+    });
+
+    this.initializeCanvas();
+
+    this.isPlaying = false;
+  }
   async onFileChanged(event?: any) 
   {
-    let VoiceDataFile: any = await this.createFile();
+    this.isPlaying = true;
+    if(!this.VoiceDataFile) this.VoiceDataFile = await this.createFile();
 
-    this.computeLength(VoiceDataFile).then ((data : any) => 
+    this.computeLength(this.VoiceDataFile).then ((data : any) => 
     {
      if(data.duration > 3600) // No more than 1 hour
      {
@@ -1351,9 +1378,10 @@ export class PlaygroundComponent implements OnInit
      }
      else
      {
-      this.voiceUrl = this.dom.bypassSecurityTrustUrl(URL.createObjectURL(VoiceDataFile));
+      this.voiceUrl = this.dom.bypassSecurityTrustUrl(URL.createObjectURL(this.VoiceDataFile));
      }
-    }).then(() =>
+    })
+    .then(() =>
     {
       this.cd.detectChanges();
       let count = 3;
@@ -1362,6 +1390,8 @@ export class PlaygroundComponent implements OnInit
         this.timeCount = count + '';
         if(count == 0)
         {
+          this.idx = 0;
+          this.points = 0;
           this.timeCount = '';
           clearInterval(x);
           this.audio.nativeElement.play();
