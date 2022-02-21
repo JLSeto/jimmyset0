@@ -1,0 +1,52 @@
+<div>
+    <img id="bg-game" [src]="getUrl()" class="nonDraggableImage" style="width: 100%; height: auto;">
+    <div class="overlay-score" style="font-size: 48px;" >
+        Score: {{points}}
+    </div>
+    <div class="overlay-load" style="z-index: 9;">
+        <button mat-fab color="accent" type="button" (click)="onFileChanged()">
+            <i class="material-icons">play_arrow</i> 
+        </button> 
+    </div>
+    <div class="overlay-load2" style="color: white; font-size: 64px; font-weight: 700;">
+        {{timeCount}}
+    </div>
+    <canvas #canvas class="overlay"></canvas>
+    
+</div>
+
+
+<!--
+
+<div fxLayout="column">
+    <img [src]="getUrl()" class="nonDraggableImage" style="width: 100%; height: 50%;">
+    <div class="overlay-load">
+        <button mat-fab color="accent" type="button" (click)="fileInput.click()"
+          matTooltip="Upload Recording File">
+            <i class="material-icons">publish</i> 
+        </button> 
+    </div>
+    <div class="overlay-load2" style="color: white; font-size: 64px; font-weight: 700;">
+        {{timeCount}}
+    </div>
+    <div fxLayout="column">
+        <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="48px" class="overlay">
+            <div *ngFor="let x of buttons">
+                <div class="example-ripple-container mat-elevation-z8"
+                    matRipple
+                    [matRippleCentered]="true"
+                    [matRippleDisabled]="false"
+                    [matRippleUnbounded]="true"
+                    [matRippleRadius]="50"
+                    [matRippleColor]="'pink'">
+                    {{x}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+-->
+<input style="display: none" type="file" (change)="onFileChanged($event)" accept="audio/*" #fileInput>
+<audio #audio id="audio" [src]="voiceUrl" preload="metadata" crossorigin="anonymous"></audio>
