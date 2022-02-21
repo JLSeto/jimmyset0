@@ -67,10 +67,21 @@ export class OnlyNumber {
           e.preventDefault();
         }
         // Ensure that it is a number and stop the keypress
-        if (this.OnlyNumber && (!this.numOnly.includes(e.key))) 
+        if (this.OnlyNumber) 
         {
+          if(!this.numOnly.includes(e.key))
+          {
             e.preventDefault();
+          }
+
+          if((this.el.nativeElement.value).includes('-') && e.key == '-')
+          {
+            e.preventDefault();
+          }
+            
         }
+
+
 
         if(this.OnlyBinary && (e.shiftKey || !this.binOnly.includes(e.key)))
         {

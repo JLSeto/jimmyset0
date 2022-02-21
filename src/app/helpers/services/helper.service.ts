@@ -14,6 +14,8 @@ export class HelperService
   public  projselectedFB : string = 'All';
   public  noteselectedFB : string = 'All';
 
+  public showNav: boolean = true;
+  
   constructor(private router: Router)
   {
     this.checkifMobile();

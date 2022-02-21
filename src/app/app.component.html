@@ -1,6 +1,6 @@
 <div class="app-outer">
   <!------------------------------------------------ Navigation Bar ----------------------------------------------->
-  <app-navbar></app-navbar>
+  <app-navbar *ngIf="hS.showNav"></app-navbar>
   <!------------------------------------------------ Navigation Bar ----------------------------------------------->
   <mat-sidenav-container class="example-sidenav-container">
     <mat-sidenav #sidenav mode="over">
