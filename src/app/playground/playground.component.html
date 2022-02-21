@@ -10,7 +10,7 @@
         <button mat-fab color="accent" type="button" *ngIf="!isPlaying" (click)="onFileChanged()">
             <i class="material-icons">play_arrow</i> 
         </button>
-        <button mat-fab color="accent" type="button" *ngIf="isPlaying" [disabled]="timeCount != ''" (click)="stopGame()">
+        <button mat-fab color="accent" type="button" *ngIf="isPlaying" [disabled]="timeCount != ''" (click)="stopGame('Game Over')">
             <i class="material-icons">stop</i> 
         </button> 
     </div>

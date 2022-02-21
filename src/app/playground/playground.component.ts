@@ -1296,7 +1296,7 @@ export class PlaygroundComponent implements OnInit
   { 
     return (() => 
     {
-      console.log(this.beatMapGen);
+      this.stopGame('Final Score: ' + this.points);
     });
   }
 
@@ -1337,11 +1337,11 @@ export class PlaygroundComponent implements OnInit
     return file;
   }
 
-  public stopGame()
+  public stopGame(endStr: string)
   {
     if(this.timeCount != '') return;
 
-    this.timeCount = 'Game Over';
+    this.timeCount = endStr;
     this.idx = 0;
     this.points = 0;
     this.audio.nativeElement.pause();
