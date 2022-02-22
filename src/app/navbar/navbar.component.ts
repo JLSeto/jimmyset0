@@ -40,6 +40,7 @@ export class NavbarComponent implements OnInit
     {
         if(val instanceof NavigationEnd) 
         {
+            this.configureGTAG(val);
             let url = val.url.split('/');
             this.baseURL = val.url.split('?')[0];
             this.setTitle(url);
@@ -69,11 +70,6 @@ export class NavbarComponent implements OnInit
     {
         'page_path': event.urlAfterRedirects
     });
-
-    // gtag('config', 'G-JBDYNJFL65', 
-    // {
-    //     'page_path': event.urlAfterRedirects
-    // });
   }
 
 }
