@@ -23,6 +23,8 @@ import { CalculatorComponent } from './calculator/calculator.component'
 
 import { OnlyNumber } from './helpers/directives/onlynumber.directive';
 import { PlaygroundComponent } from './playground/playground.component';
+import { BeatMusicComponent } from './beat-music/beat-music.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: 
@@ -38,7 +40,8 @@ import { PlaygroundComponent } from './playground/playground.component';
     TestComponent,
     CalculatorComponent,
     OnlyNumber,
-    PlaygroundComponent
+    PlaygroundComponent,
+    BeatMusicComponent
   ],
   imports: 
   [
@@ -49,7 +52,8 @@ import { PlaygroundComponent } from './playground/playground.component';
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
-    GoogleChartModule
+    GoogleChartModule,
+    HttpClientModule
     // ChartsModule
   ],
   providers: [],
