@@ -1,0 +1,94 @@
+.overlay
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: #555;
+    color: white;
+    font-size: 16px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    background-color: transparent;
+}
+
+.overlay-main
+{
+    position: absolute;
+    padding: 12px 24px;
+    border: none;
+    background-color: transparent;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.bot-left
+{
+    top: 85%;
+    left: 2.5%;
+    transform: translate(-5%, -5%);
+    -ms-transform: translate(-5%, -5%);
+    color: white;
+    z-index: 9;
+}
+
+.left
+{
+    top: 0%;
+    left: 5%;
+    transform: translate(-10%, -10%);
+    -ms-transform: translate(-10%, -10%);
+    color: white;
+    font-size: 14px;
+}
+
+.play
+{
+    top: 5%;
+    left: 5%;
+    transform: translate(-10%, -10%);
+    -ms-transform: translate(-10%, -10%);
+    color: white;
+    font-size: 16px;
+    z-index: 9;
+}
+
+.disp-msg
+{
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    color: white;
+    font-size: 64px; 
+    font-weight: 600;
+}
+
+.hitscore
+{
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    color: white;
+    font-size: 48px; 
+    font-weight: 500;
+}
+
+.score
+{
+    top: 5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    color: white;
+    font-size: 48px;
+}
+
+.nonDraggableImage{
+    -webkit-user-drag: none;
+}
