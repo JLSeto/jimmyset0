@@ -38,7 +38,7 @@ export class ProjectsComponent implements OnInit
                 details        :    [
                                         { 
                                             heading   : 'Overview', 
-                                            notes     : `I built a rhythm game over the weekend for fun.
+                                            notes     : `I built this rhythm game over the weekend for fun.
                                                         This rhythm game is similar to other rhythm games where you have to press buttons/keys
                                                         in a sequence that is shown on the screen with some music.  
                                                         While I used the League of Legends art & music for this demo, 
