@@ -73,10 +73,7 @@ export class ProjectsComponent implements OnInit
                                         'Html',
                                         'CSS'
                                     ],
-                references     :    [
-                                        {link: 'https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true', title: 'Project Guide'},
-                                        {link: 'https://review.udacity.com/#!/projects/2696458597/rubric'     , title: 'Rubric'}
-                                    ],
+                references     :    [],
             },
             {
                 type           : ["Games"],
