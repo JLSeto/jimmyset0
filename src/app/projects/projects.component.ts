@@ -38,8 +38,9 @@ export class ProjectsComponent implements OnInit
                 details        :    [
                                         { 
                                             heading   : 'Overview', 
-                                            notes     : `This rhythm game is similar to other rhythm games where you have to press buttons/keys
-                                                        to a sequence that is shown on the screen with some music.  
+                                            notes     : `I built a rhythm game over the weekend for fun.
+                                                        This rhythm game is similar to other rhythm games where you have to press buttons/keys
+                                                        in a sequence that is shown on the screen with some music.  
                                                         While I used the League of Legends art & music for this demo, 
                                                         the art & music can be easily swapped out along with a new beat map. 
                                                         Press the play button below to start the game and use the keys 
