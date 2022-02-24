@@ -11,7 +11,7 @@ declare const google:  any;
 
 export class TestComponent implements OnInit 
 {
-  private SIZE: number = 10230 / 10; // secods
+  private SIZE: number = 10230 / 10; // seconds
   public post: {_id: string, selections: any[]} = {_id: 'fff',selections: new Array(this.SIZE) }; // (new Array(10).fill( (new Array(3)).fill(0) ) )
 
   public SV: any = {
@@ -65,13 +65,13 @@ export class TestComponent implements OnInit
       prn_seq[i] = this.getRandomInt(-1 , 1);
     }
 
-    // let f = 154 * 10.23e6; // 77 * 10.23e6;
-    // let tick = 2.0e-8/1000; // 5e-9 / 1000;
-    // let idx = 0;
-
-    let f = 1.023e6;
-    let tick = 1.023e-7; // 5e-9 / 1000;
+    let f = 154 * 10.23e6; // 77 * 10.23e6;
+    let tick = 2.0e-8/1000; // 5e-9 / 1000;
     let idx = 0;
+
+    // let f = 1.023e6;
+    // let tick = 1.023e-7; // 5e-9 / 1000;
+    // let idx = 0;
 
 
     let ca = this.prnCreator(1);
@@ -81,12 +81,10 @@ export class TestComponent implements OnInit
   
       this.post.selections[i][0] = idx;
       this.post.selections[i][2] = Math.sin(2 * Math.PI * f * idx);
-
-      
-      // this.post.selections[i][1] = prn_seq[Math.floor(idx * f) % 16];
+      this.post.selections[i][1] = prn_seq[Math.floor(idx * f) % 16];
 
       // PRN Code
-      this.post.selections[i][1] = ca[Math.floor(idx * f) % 1023];
+    //   this.post.selections[i][1] = ca[Math.floor(idx * f) % 1023];
 
       this.post.selections[i][3] = this.post.selections[i][2] * this.post.selections[i][1]; 
       idx = idx + tick;

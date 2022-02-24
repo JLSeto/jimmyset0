@@ -49,6 +49,8 @@
                         <div style="margin-bottom: 12px; line-height: 1.6;" [innerHTML]="obj.demo?.notes"></div>
                         <div style="display: block; max-width: 800px; min-width: 50px;">
                             <app-frogger *ngIf="obj.link == 'frogger' && !hS.getIsMobile()" class="projects-img"></app-frogger>
+                            <app-beat-music [embedProject]="true" *ngIf="obj.link == 'rhythm-game-demo' && !hS.getIsMobile()" class="projects-img"></app-beat-music>
+                            <app-test *ngIf="obj.link == 'prn'" class="projects-img"></app-test>
                         </div>
                         <div *ngIf="obj.link == 'calc'">
                             <app-calculator></app-calculator>

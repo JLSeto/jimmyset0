@@ -1,6 +1,6 @@
-<div>
-    <img id="bg-game" [src]="bgImage" class="nonDraggableImage" style="width: 100%; height: auto;">
-    <div class="overlay-main score">
+<div style="position: relative;">
+    <img #bgGame id="bg-game" [src]="bgImage" class="nonDraggableImage" style="width: 100%; height: 100%;">
+    <div class="overlay-main score" [ngStyle]="{'font-size': scoreSize+'px', 'top': topOffset+'%'}">
         Score: {{totalScore}}
     </div>
     <div class="overlay-main left">
@@ -16,11 +16,11 @@
         </button> 
     </div>
     <div class="overlay-main hitscore">
-        {{hitScore}}
+        {{hitScore}}&nbsp;
     </div>
-    <div class="overlay-main disp-msg">
-        {{dispMsg}}
+    <div class="overlay-main disp-msg" [ngStyle]="{'font-size': displSize+'px'}">
+        {{dispMsg}}&nbsp;
     </div>
-    <canvas #canvas class="overlay"></canvas>
+    <canvas #canvas class="overlay" [ngStyle]="{'transform': 'translate(-50%, -'+downOffset+'%)'}"></canvas>
 </div>
 <audio #audio id="audio" [src]="songURL" preload="metadata" crossorigin="anonymous"></audio>

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Subject, Subscription } from 'rxjs';
 import { BeatMap, KeyInterface } from '../helpers/interfaces/interfaces';
@@ -12,9 +12,9 @@ const CIRCLE_FILL_TIME          : number = 0.12;
 const BEAT_MAP_GEN              : boolean = false;
 const DYNAMIC_CIRC_RAD_OFFSET   : number = 4;
 
-const C_SCALE: number = 50; // Scale used to compute the Circle's radius from the screen width
-const T_SCALE: number = 12; // Scale used to compute the tick/button spacing from the screen width
-const O_SCALE: number = 1.5; // Scale used to compute the offset from the left side of the screen
+var C_SCALE: number = 50; // Scale used to compute the Circle's radius from the screen width
+var T_SCALE: number = 12; // Scale used to compute the tick/button spacing from the screen width
+var O_SCALE: number = 1.5; // Scale used to compute the offset from the left side of the screen
 
 const KEY_CODES: any =
 {
@@ -48,6 +48,9 @@ const buttons: string[] = ['a', 's', 'd', 'f', ' ', 'j', 'k', 'l', ';'];
 
 export class BeatMusicComponent implements OnInit
 {
+    @Input() embedProject: boolean = false;
+    @ViewChild('bgGame', { static: true }) bgGame!: ElementRef;
+
     // Canvas and Audio
     @ViewChild('canvas', { static: true }) canvas!: ElementRef<HTMLCanvasElement>;
     @ViewChild('audio', { static: true }) audio!: ElementRef<HTMLAudioElement>;
@@ -57,9 +60,9 @@ export class BeatMusicComponent implements OnInit
     public gameRunning: boolean = false;
 
     // Assets
-    public bgImage : string = "/assets/kda_pic.jpg";
-    public currSong: string = "/assets/kda-short.mp3";
-    public currMap : string = "/assets/kda_beatmap_1.json";
+    public bgImage : string = "/assets/beats/kda_pic.jpg";
+    public currSong: string = "/assets/beats/kda-short.mp3";
+    public currMap : string = "/assets/beats/kda_beatmap_1.json";
 
     public songFile: any = null;
     public songURL : any = null;
@@ -76,6 +79,12 @@ export class BeatMusicComponent implements OnInit
     public circleRadius: number = window.innerWidth / C_SCALE;
     public ticks: number = window.innerWidth / T_SCALE;
     public offset: number = this.ticks / O_SCALE;
+
+    // Sizes
+    public displSize: number = 56;
+    public scoreSize: number = 48;
+    public topOffset: number = 5;
+    public downOffset: number = 50;
 
     // Keys
     public staticKeys: KeyInterface[] =
@@ -169,16 +178,42 @@ export class BeatMusicComponent implements OnInit
                 this.init();
             }
         });
+
+        if(this.embedProject)
+        {
+            this.width = this.bgGame.nativeElement.clientWidth;
+            this.height = this.bgGame.nativeElement.clientWidth * 0.571;
+            this.displSize = this.scoreSize = 28;
+            this.topOffset = 12;
+            this.downOffset = 30;
+            C_SCALE = 32;
+            T_SCALE = 12;
+            this.setDimensions();
+        }
+
     }
 
-    ngAfterContentInit()
+    ngAfterViewInit()
     {
+        // Reset Game Dimensions
         this.setDimensions();
+
+        // Reset the Key Spacing
+        this.setKeySpacing(this.staticKeys, this.ticks);
+
+        // Reset the Beat Map Spacing
+        this.setBeatMapSpacing(this.beatMap, this.ticks);
+
+        // Reset the Canvas
+        this.setCanvas();
     }
 
     ngOnDestroy() : void
     {
         this.preloadObserve.unsubscribe();
+        window.removeEventListener('keyup', this.upEvent)
+        window.removeEventListener('keydown', this.downEvent);
+        cancelAnimationFrame(this.windowRequest);
     }
 
     // Reset the initial Dimensions of the Game Board
@@ -186,8 +221,8 @@ export class BeatMusicComponent implements OnInit
     {
         if(event)
         {
-            this.width = event.target.innerWidth;
-            this.height = event.target.innerHeight;
+            this.width = this.bgGame.nativeElement.clientWidth;
+            this.height = this.bgGame.nativeElement.clientHeight;
         }
 
         this.circleRadius = this.width / C_SCALE;
@@ -198,6 +233,8 @@ export class BeatMusicComponent implements OnInit
     // Initialize the global key spacing
     private setKeySpacing(keys: KeyInterface[], ticks: number) : void
     {
+        if(!keys) return;
+
         keys.forEach((obj: KeyInterface, i: number) => 
         {
             obj.x = i * ticks;
@@ -206,6 +243,8 @@ export class BeatMusicComponent implements OnInit
 
     private setBeatMapSpacing(beatMap: BeatMap[], ticks: number) : void
     {
+        if(!beatMap) return;
+
         beatMap.forEach((obj: BeatMap) => 
         {
             obj.x = KEY_CODES[obj.c] * ticks;
@@ -214,10 +253,8 @@ export class BeatMusicComponent implements OnInit
 
     private setCanvas() : void
     {        
-        let h: any = document.getElementById('bg-game')?.clientHeight;
-
         // Set the Canvas height & width
-        this.canvas.nativeElement.height = ((!!h) ? h: this.height) * CANVAS_HEIGHT_SCALE;
+        this.canvas.nativeElement.height = this.height * CANVAS_HEIGHT_SCALE;
         this.canvas.nativeElement.width = this.width * CANVAS_WIDTH_SCALE;
 
         // Clear Canvas
@@ -384,20 +421,21 @@ export class BeatMusicComponent implements OnInit
 
     private addEventListeners() : void
     {
-        
-        document.addEventListener('keydown', (e) => 
-        {
-          if((e.key).charCodeAt(0) < 32 || (e.key).charCodeAt(0) > 122) e.preventDefault();
-          
-          this.handleInput(e.key);
-          e.preventDefault();
-        });
-  
-        window.addEventListener("keyup", (e) => 
-        {
-          this.handleOutput(e.key);
-          e.preventDefault();
-        }, false);
+        window.addEventListener('keydown', this.downEvent, false);
+        window.addEventListener("keyup", this.upEvent, false);
+    }
+
+    private downEvent = (e : any) =>
+    {
+        if((e.key).charCodeAt(0) < 32 || (e.key).charCodeAt(0) > 122) e.preventDefault();
+        this.handleInput(e.key);
+        e.preventDefault();
+    }
+
+    private upEvent = (e : any) =>
+    {
+        this.handleOutput(e.key);
+        e.preventDefault();
     }
 
     private handleInput = (keys : string) : void => 
