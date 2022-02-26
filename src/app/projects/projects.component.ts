@@ -244,7 +244,8 @@ export class ProjectsComponent implements OnInit
                                         'Google Charts',
                                         'HTML', 
                                         'CSS', 
-                                        'JavaScript'
+                                        'JavaScript',
+                                        'C++'
                                     ],
                 references     :    [
                                         {link: 'https://www.arduino.cc/en/Reference/CurieBLE'                                       , title: 'CurieBLE'},
