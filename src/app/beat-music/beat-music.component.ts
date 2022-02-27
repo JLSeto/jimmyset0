@@ -554,6 +554,7 @@ export class BeatMusicComponent implements OnInit
               if(val.y > this.canvas.nativeElement.height)
               {
                 this.idx = i + 1;
+                this.printEmotes(1);
                 continue;
               }
     
