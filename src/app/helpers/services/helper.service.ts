@@ -23,7 +23,6 @@ export class HelperService
 
   public checkifMobile() : void
   {
-
     if(navigator.permissions)
     {
       this.isMobile = (navigator.userAgent.match(/Android/i) 
@@ -34,7 +33,10 @@ export class HelperService
       || navigator.userAgent.match(/BlackBerry/i) 
       || navigator.userAgent.match(/Windows Phone/i)) ? true : false;
     }
-
+    else
+    {
+      this.isMobile = this.innerWidth < 501;
+    }
   }
 
   public getIsMobile() : boolean

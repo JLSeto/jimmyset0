@@ -142,9 +142,9 @@ export class ProjectsComponent implements OnInit
                                                         or notebook entries corrected.  Unfortunately, the website was not a hit (possibly I had a very niche field
                                                         or maybe I did not market it well enough).  However, going through the entire 
                                                         process of building out the entire frontend and backend while following OWASP security practices
-                                                        and deploying it on Google Cloud Compute was a great learning experience.  The site is currently online 
+                                                        and deploying it on Google Cloud Compute was a great learning experience.  <s>The site is currently online 
                                                         and is available at 
-                                                        <a href="https://voicegengo.com" target="_blank">VoiceGengo.com</a>`,
+                                                        <a href="https://voicegengo.com" target="_blank">VoiceGengo.com</a> </s>  (No longer available since I had no traffic...)`,
                                             img        :    '/assets/voiceGengo/voiceGengoScreen.png'
                                         },
                                         {
