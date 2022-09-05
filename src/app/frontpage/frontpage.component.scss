@@ -5,17 +5,25 @@
     color: #333333; letter-spacing: 1px;
 }
 
-    .toptop {
+  .toptop {
+    padding-top: 64px;
     background: linear-gradient(to right, white 50%, #F0F2F5 50%);
     min-height: calc(100vh - 40px);
-    margin-bottom: 10px;
-    padding-top: 25px;
+    margin-bottom: 12px;
   }
 
   .toptopPadd {
-    padding-top: 25px;
+    padding-top: 64px;
+    margin-bottom: 128px;
   }
 
+  .halfhalf {
+    width: 50%;
+  }
+
+  .fullfull {
+    width: 100%;
+  }
 
   h1{
     font-family: "Varela Round"; font-size: 60px; font-style:normal; font-variant: normal; font-weight: 650; line-height: 69.4px;
@@ -28,6 +36,7 @@
   h3{
     font-family: "Varela Round"; font-size: 18px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 32.4px;
   }
+  
 
   .frontpage-links{
     cursor: pointer;
@@ -39,8 +48,7 @@
     text-decoration: underline;
   }
 
-  .nav-circle
-{
+.nav-circle {
     height: auto;
     width: 300px;
     overflow: hidden;

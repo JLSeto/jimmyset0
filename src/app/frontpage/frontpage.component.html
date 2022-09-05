@@ -1,41 +1,36 @@
-<div class="ftop-container" [ngClass]="hS.getInnerWidth() > 959 ? 'toptop' : 'toptopPadd'" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="center center" 
-    fxLayout.lt-lg="column" fxLayoutAlign.lt-lg="start start" fxLayoutGap="20px">
-        <div fxShow="true" fxHide.lt-md fxFlex="8"></div>
-    
-        <div fxFlex style="padding-left: 10px; padding-right: 10px;" 
-        fxLayout="row" fxLayoutAlign="start start" fxLayout.lt-md="column" fxLayoutAlign.lt-md="center stretch" fxLayoutGap="20px">
-          <div fxFlex.gt-md [ngStyle]="{'text-align': hS.getInnerHeight() > 959 ? 'start' : 'center'}">
-            <div fxLayout="row" fxLayoutAlign="center center">
-                <img [src]="faviconImg" class="nav-circle">
-            </div>
-            <h2>Hi, I'm Jimmy. Welcome to my blog.</h2>
-            <h3>
-                I like programming, electronics, and learning new technologies. 
-                The main purpose of this site is to keep notes on stuff I studied, personal projects, 
-                and other open source tech stuff. I'm not active on social media, but have my accounts listed below.
-            </h3>
-            <div>
-              <h3 fxLayout="column" fxLayoutAlign="start start" fxLayoutAlign.lt-md="center center">
-                <!-- <div>Resume: <a class="frontpage-links" (click)="downloadResume()">View</a></div> -->
-                <div>Email: <a class="frontpage-links" [href]="mailTo" target="_blank">jseto@jimmyseto.com</a></div>
-              </h3>
-            </div>
-            <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="18px">
-                <div class="logos-signin">
-                    <a href="https://twitter.com/Jset0" target="_blank"><img [src]="'/assets/twitter.svg'" style="width: 100%; height: auto;"></a>
-                </div>
-                <div class="logos-signin">
-                    <a href="https://github.com/JLSeto" target="_blank"><img [src]="'/assets/github.png'" style="width: 100%; height: auto;"></a>
-                </div>
-                <div class="logos-signin">
-                    <a href="https://www.linkedin.com/in/jimmy-seto/" target="_blank"><img [src]="'/assets/linkedin.png'" style="width: 100%; height: auto;"></a>
-                </div>
-            </div>
+<div class="ftop-container" [ngClass]="hS.getInnerWidth() > 1279 ? 'toptop' : 'toptopPadd'">
+  <div fxShow="true" fxHide.lt-lg fxFlex="8"></div>
+  <div fxLayout="row" fxLayoutAlign="start stretch" fxLayout.lt-lg="column" fxLayoutAlign.lt-lg="start start">
+    <div [ngClass]="hS.getInnerWidth() > 1279 ? 'halfhalf' : 'fullfull'">
+      <div>
+        <span fxFlex></span>
+        <img [src]="faviconImg" class="nav-circle">
+        <span fxFlex></span>
+      </div>
+      <div style="text-align: center;">
+        <h2>Hi, I'm Jimmy. Welcome to my blog.</h2>
+        <h3 style="padding: 0 12px;">
+          I like programming, electronics, and learning new technologies.
+          The main purpose of this site is to keep notes on stuff I studied, personal projects, 
+          and other open source tech stuff. I'm not active on social media, but have my accounts listed below.
+        </h3>
+        <div>Email: <a class="frontpage-links" [href]="mailTo" target="_blank">jseto@jimmyseto.com</a></div>
+        <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="18px" style="margin-top: 24px">
+          <div class="logos-signin">
+              <a href="https://twitter.com/Jset0" target="_blank"><img [src]="'/assets/twitter.svg'" style="width: 100%; height: auto;"></a>
           </div>
-          <div fxFlex.gt-md *ngIf="!hS.getIsMobile()">
-              <app-frogger ></app-frogger>
+          <div class="logos-signin">
+              <a href="https://github.com/JLSeto" target="_blank"><img [src]="'/assets/github.png'" style="width: 100%; height: auto;"></a>
+          </div>
+          <div class="logos-signin">
+              <a href="https://www.linkedin.com/in/jimmy-seto/" target="_blank"><img [src]="'/assets/linkedin.png'" style="width: 100%; height: auto;"></a>
           </div>
         </div>
-    
-        <div fxShow="true" fxHide.lt-md fxFlex="8"></div>
+      </div>
+    </div>
+    <div *ngIf="!hS.getIsMobile()" [ngClass]="hS.getInnerWidth() > 1279 ? 'halfhalf' : 'fullfull'" >
+      <app-frogger ></app-frogger>
+    </div>
+  </div>
+  <div fxShow="true" fxHide.lt-lg fxFlex="8"></div>
 </div>

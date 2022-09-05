@@ -71,6 +71,12 @@
     z-index: 1000;
     opacity: 0.9;
   }
+
+  .sidenav-container {
+    position: fixed;
+    top: 56px;
+    opacity: 0.9;
+  }
   
   mat-sidenav-content {
     background: #fffffffb; //website background

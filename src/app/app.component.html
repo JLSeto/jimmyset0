@@ -3,7 +3,7 @@
   <app-navbar class="app-toolbar" *ngIf="hS.showNav"></app-navbar>
   <!------------------------------------------------ Navigation Bar ----------------------------------------------->
   <mat-sidenav-container class="example-sidenav-container">
-    <mat-sidenav #sidenav mode="over">
+    <mat-sidenav class="sidenav-container" #sidenav mode="over">
       <mat-nav-list>
         <a routerLink="/" mat-list-item><div class="nav-mat-list">About</div></a>
         <a routerLink="/projects" mat-list-item><div class="nav-mat-list">Projects</div></a>
