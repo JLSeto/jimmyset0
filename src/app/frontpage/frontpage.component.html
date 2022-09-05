@@ -4,7 +4,7 @@
     
         <div fxFlex style="padding-left: 10px; padding-right: 10px;" 
         fxLayout="row" fxLayoutAlign="start start" fxLayout.lt-md="column" fxLayoutAlign.lt-md="center stretch" fxLayoutGap="20px">
-          <div fxFlex [ngStyle]="{'text-align': hS.getInnerHeight() > 959 ? 'start' : 'center'}">
+          <div fxFlex.gt-md [ngStyle]="{'text-align': hS.getInnerHeight() > 959 ? 'start' : 'center'}">
             <div fxLayout="row" fxLayoutAlign="center center">
                 <img [src]="faviconImg" class="nav-circle">
             </div>
@@ -32,8 +32,8 @@
                 </div>
             </div>
           </div>
-          <div fxFlex>
-              <app-frogger *ngIf="!hS.getIsMobile()"></app-frogger>
+          <div fxFlex.gt-md *ngIf="!hS.getIsMobile()">
+              <app-frogger ></app-frogger>
           </div>
         </div>
     
